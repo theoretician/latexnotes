@@ -1,0 +1,309 @@
+\documentclass{article}
+
+\usepackage{cancel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{fullpage}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{times}
+\usepackage{pdfpages}
+
+
+\begin{document}
+
+\title{Calculus II Notes}
+\author{Will Farmer}
+\maketitle
+
+\section{Integration By Parts}
+\subsection*{Formula}
+$ u \cdot v-\int v \cdot du $
+\subsection*{Example}
+\begin{equation}
+\begin{aligned}
+\int x^3 \cdot sin(x) \cdot dx & \\
+\begin{tabular}{l | l}
+\textbf{u} & \textbf{dv} \\
+$x^3$ & $sin(x)$ \\
+$3x^2$ & $cos(x)$ \\
+$6x$ & $-sin(x)$ \\
+$6$ & $-cos(x)$ \\
+$0$ & $sin(x)$ \\
+\end{tabular}\\
+x^3 \cdot cos(x) - \int 3x^2 \cdot cos(x) \cdot dx & \\
+x^3 \cdot cos(x) + 3x^2 \cdot sin(x) - \int -6x \cdot sin(x) \cdot dx & \\
+x^3 \cdot cos(x) + 3x^2 \cdot sin(x) + 6x \cdot cos(x) - \int 6 \cdot cos(x) \cdot dx & \\
+x^3 \cdot cos(x) + 3x^2 \cdot sin(x) + 6x \cdot cos(x) - 6 \cdot sin(x) & \\
+\end{aligned}
+\end{equation}
+
+\section{Trigonometric Integrals and Substitutions}
+\subsection*{Trigonometric Identities}
+\begin{enumerate}
+\item $ sec(x)=\dfrac{1}{cos(x)} $
+\item $ csc(x)=\dfrac{1}{sec(x)} $
+\item $ cot(x)=\dfrac{1}{tan(x)} $
+\item $ sin^2(x)+cos^2(x)=1 $
+\item $ tan^2(x)+1=sec^2(x) $
+\item Double Angles
+\begin{enumerate}
+\item $ sin^2(x) = \dfrac{1}{2} \cdot (1-cos(2x)) $
+\item $ cos^2(x) = \dfrac{1}{2} \cdot (1+cos(2x)) $
+\end{enumerate}
+\item $ \dfrac{d}{dx}tan(x)=sec^2(x) $
+\item $ \dfrac{d}{dx}sec(x)=sec(x) \cdot tan(x) $
+\item $ \int sec(x) \cdot dx = ln|sec(x)+tan(x)|+C $
+\item $ \int tan(x) \cdot dx = -log(cos(x)) = ln|sec(x)|+C $
+\item Substitutions\\ \\
+\begin{tabular}{l | l | l | l}
+\textbf{Integrand} & \textbf{Substitution} & \textbf{Boundaries} & \textbf{Trig Identity}\\
+$ \sqrt{a^2-x^2} $ & $ x=a \cdot sin(\Theta) $ & $ \dfrac{\Pi}{2} \le \Theta \le \dfrac{\Pi}{2} $ & $ sin^2(\Theta)+cos^2(\Theta)=1 $\\
+$ \sqrt{a^2+x^2} $ & $ x=a \cdot tan(\Theta) $ & $ \dfrac{-\Pi}{2} < \Theta < \dfrac{\Pi}{2} $ & $ tan^2(x)+1=sec^2(x) $\\
+$ \sqrt{x^2-a^2} $ & $ x=a \cdot sec(\Theta) $ & $ 0 < \Theta < \dfrac{\Pi}{2}, \Pi < \Theta < \dfrac{3\Pi}{2}$ & $ tan^2(x)+1=sec^2(x) $\\
+\end{tabular}
+\end{enumerate}
+\subsection*{Examples}
+\begin{equation}
+\begin{aligned}
+\int \dfrac{x}{\sqrt{1-x^2}} \cdot dx\\
+x = sin(\Theta)\\
+x^2 = sin^2(\Theta)\\
+dx = cos(\Theta)\\
+\int \dfrac{sin(\Theta)}{\sqrt{1-sin^2(\Theta)}} \cdot d\Theta\\
+\int \dfrac{sin(\Theta)}{\sqrt{cos^2(\Theta)}} \cdot d\Theta\\
+\int \dfrac{sin(\Theta)}{cos(\Theta)} \cdot d\Theta\\
+\int tan(\Theta) \cdot d\Theta\\
+ln|sec(\Theta)|+C\\
+ln|sec(arcsin(x))|+C\\
+\end{aligned}
+\end{equation}
+\section{Partial Fraction Decomposition}
+This is meant to simplify integrals of rational functions.\\
+\indent Rational functions are ratios of polynomials in the form $ \dfrac{P(x)}{Q(x)} $ while P(x) and Q(x) are arbitrary polynomials.
+\textbf{PROPER} iff (degree of Q(x) $>$ degree of P(x))
+\subsection*{Long Division}
+Suppose $ Q(x) \le P(x) $\\
+After long division you will get $ \dfrac{P(x)}{Q(x)}=S(x)+\dfrac{R(x)}{Q(x)} $ while R(x) is the remainder (R(x) is \textit{ALWAYS} less than Q(x)).\\
+PFD: Replacing proper fractions by the sum of simpler fractions that we can integrate.\\
+There are two ways to solve for A and B
+\begin{enumerate}
+\item Zero out one or the other (see ex.)
+\item Expand and collect terms (see ex.)
+\end{enumerate}
+\subsection*{Example}
+\begin{equation}
+\begin{aligned}
+\int \dfrac{x}{(x+1)(x-2)} \cdot dx\\
+\dfrac{A}{x+1}+\dfrac{B}{x-2}\\
+\dfrac{x}{(x+1)(x-2)}=\dfrac{A}{x+1}+\dfrac{B}{x-2}\\
+\dfrac{\cancel{(x+1)(x-2)} \cdot x}{\cancel{(x+1)(x-2)}}=\dfrac{\cancel{(x+1)}(x-2) \cdot A}{\cancel{x+1}}+\dfrac{(x+1)\cancel{(x-2)} \cdot B}{\cancel{x-2}}\\
+x=A \cdot (x-2)+B \cdot (x+1)\\
+x=2 \therefore 2=3B \therefore B=\dfrac{2}{3}, A=\dfrac{1}{3} \\
+or\\
+x=Ax-2A+Bx+B\\
+1=A+B\\
+0=B-2A\\
+B=2A\\
+A=\dfrac{1}{3}, B=\dfrac{2}{3}
+\end{aligned}
+\end{equation}
+\subsection*{Cases}
+\begin{enumerate}
+\item For each $1^{st}$ order, non-repeated factor, you add to the PFD a term of the form $\dfrac{A}{ax+b}$\\
+\begin{center}
+$ \dfrac{A_0}{a_0x+b_0}+\dfrac{A_1}{a_1x+b_1}+...+\dfrac{A_n}{a_nx+b_n} $
+\end{center}
+\item For each $1^{st}$ order factor $(ax+b)$ repeated $n$ times, $[(ax+b)^n]$ add it to the PFD $n$ times.
+\begin{center}
+$ \dfrac{A_0}{a_0x+b_0}+\dfrac{A_1}{(a_1x+b_1)^2}+...+\dfrac{A_n}{(a_nx+b_n)^n} $
+\end{center}
+\item For each irreducible $2^{nd}$ order, non-repeated factor $[(ax^2+bx+c)$ for $(b^2-4ac)<0]$ add it to the PFD one term.
+\begin{center}
+$ \dfrac{Ax+B}{ax^2+bx+c} $
+\end{center}
+\item For each irreducible $2^{nd}$ order, repeated factor $[(ax^2+bx+c)^n$ for $(b^2-4ac)<0]$ add it to the PFD $n$ terms.
+\begin{center}
+$ \dfrac{A_0x+B_0}{(ax^2+bx+c)^1}+\dfrac{A_1x+B_1}{(ax^2+bx+c)^2}+...+\dfrac{A_nx+B_n}{(ax^2+bx+c)^n}$
+\end{center}
+\end{enumerate}
+\section{Sequences}
+A sequence is an ordered, infinite list of numbers.\\
+\indent $ \displaystyle \lim_{n \to \infty}a_1,a_2,a_3,...,a_n$\\
+$\{a_n\}^\infty_{n=1}$ indicates a sequence.\\
+We can think of a sequence as a function:\\
+\indent $ n \in \mathbb{N} $ and $ f(n)=a_n $\\
+Two types of sequence definition\\
+\begin{enumerate}
+\item Linearly: $ a_n=\dfrac{n}{n+1} $ so $ a_1=\dfrac{1}{2}, a_2=\dfrac{2}{3},etc. $\\
+\item Recursively (Fibonacci): $\{f_n\}^\infty_1 f_1=1, f_2=2, f_n=f_{n-1}+f_{n-2} $\\
+\end{enumerate}
+A sequence can also be pictured by graphing.\\
+\subsection*{Squeeze Theorem (Sammich Theorem)}
+Let $ \{a_n\}^\infty_1,\{b_n\}^\infty_1,\{c_n\}^\infty_1 $ and $ a_n \le b_n \le c_n $\\
+If $ \displaystyle \lim_{n\to\infty}a_n=L$ and $ \displaystyle \lim_{n\to\infty}c_n=L$ then $ \displaystyle \lim_{n\to\infty}b_n=L$
+\section{Series}
+A series is a sum of an infinite sequence of terms.\\
+Let $\{a_n\}^\infty_{n=1}$, the series with these terms is $ \displaystyle \sum_{n=1}^\infty a_n $\\
+It is possible for a sum of an infinite number of terms to add up to a finite number. This is called a convergent series.\\\\
+Consider:\\
+\begin{equation}
+\begin{aligned}
+s_1&=a_1\\
+s_2&=a_1+a_2\\
+s_n&=a_1+a_2+...+a_n\\
+\end{aligned}
+\end{equation}
+$s_n$ is called the sequence of partial sums ($\{s_n\}^\infty_{n=1}$) and the convergence of the series depends on its convergence.\\\\
+If $\displaystyle \lim_{n\to\infty}s_n=L$ then it's convergent.\\
+If $\displaystyle \lim_{n\to\infty}s_n=(+\infty,-\infty)$ then it's divergent.\\
+If $\displaystyle \lim_{n\to\infty}$ does not exist, then the test is inconclusive.
+\subsection*{Geometric Series}
+$\displaystyle \sum^\infty_{n=1}a \cdot r^{n-1}$ where $a\not= 0$ and $r=$ the ratio of the series\\
+If $-1<r<1$ then the series is convergent to $\dfrac{a}{1-r}$.\\
+If $r\ge 1$ then it is divergent.\\
+If $r\le -1$ then it is not regular (neither convergent or divergent).
+\subsection*{Shifting range of series}
+Formula:
+\begin{equation}
+\begin{aligned}
+\sum^\infty_{n=x}a \cdot r^{n+y}\\
+\sum^\infty_{n=x}a \cdot r^{n-x+y+x}\\
+\sum^\infty_{n=x}a \cdot r^{n-x} \cdot r^{y+x}\\
+\sum^\infty_{n=x}r^{n-1}(a(r^{y+x}))\\
+\dfrac{a \cdot r^{y+x}}{1-r}\\
+=\dfrac{a \cdot r^{y+x}}{1-r}
+\end{aligned}
+\end{equation}
+\subsection*{Harmonic Series}
+$\displaystyle \sum^\infty_{n=1}\dfrac{1}{n}=1+\dfrac{1}{2}+\dfrac{1}{3}+...+\dfrac{1}{n}$  is \textbf{DIVERGENT}\\
+$\displaystyle \sum^\infty_{n=1}\dfrac{1}{n^\alpha}$ is called the generalized harmonic series. It is convergent if $\alpha >1$ and divergent if $\alpha\le 1$.
+\section{Series Tests}
+\subsection*{Divergence Test (Test for un-convergence)}
+If $\displaystyle \sum^\infty_{n=1}a_n$ is convergent, then $\displaystyle \lim_{n\to\infty}a_n=0$\\
+If $\displaystyle \lim_{n\to\infty}a_n\not= 0$, then the series may or may not converge...
+\subsection*{Integral Test}
+If $a_n=f(x)$ and the function is continuous, decreasing, and positive on $[1,+\infty)$, then the series is convergent iff the integral of the function is convergent. Iff $\int^\infty_1 f(x) \cdot dx$ is convergent then $\displaystyle \sum^\infty_{n=1}a_n$ is convergent and vice=versa with divergence.
+\subsection*{Comparison Test}
+Let $\displaystyle \sum^\infty_{n=1}a_n$ and $\displaystyle \sum^\infty_{n=1}b_n$ be two series with positive terms. If $a_n\le b_n$ (for all $n$, or for all $n\ge N$) and $\displaystyle \sum^\infty_{n=1}b_n$ converges, then $\displaystyle \sum^\infty_{n=1}a_n$ converges as well. If $a_n\ge b_n$ (for all $n$, or for all $n\ge N$) and $\displaystyle \sum^\infty_{n=1}b_n$ diverges, then $\displaystyle \sum^\infty_{n=1}a_n$ diverges.
+\subsection*{Limit Comparison Test}
+Let $\displaystyle \sum^\infty_{n=1}a_n$ and $\displaystyle \sum^\infty_{n=1}b_n$ be two series with positive terms. If $\displaystyle \lim_{n\to\infty}\dfrac{a_n}{b_n}=C, c \not= [0,\infty)$, then the two series are either both convergent or divergent.
+\subsection*{Alternating Series Test (Leibniz' Test)}
+\textit{This ONLY applies to alternating series}\\
+$\displaystyle \sum^\infty_{n=1}(-1)^na_n$ or $\displaystyle \sum^\infty_{n=1}(-1)^{n-1}a_n$ where $a_n\ge 0$.\\
+if $\displaystyle \lim_{n\to\infty}a_n=0$ and $a_n$ is decreasing for all $n$ then the series is convergent.
+\subsection*{Absolute Values Test}
+For any series $\displaystyle \sum^\infty_{n=1}a_n$ you must consider the absolute value series $\displaystyle \sum^\infty_{n=1}|a_n|$. If the series of absolute values is convergent, it is called absolutely convergent. Any series that is absolutely convergent is also convergent ($-|a_n|\le a_n \le |a_n|$). There exist many series that are convergent, but \textit{NOT} absolutely convergent (these are called conditionally convergent). For example, an alternating harmonic series is conditionally convergent.
+\subsection*{Ratio Test}
+$\displaystyle \sum^\infty_{n=1}a_n$\\
+if:\\
+\indent $\displaystyle \lim_{n\to\infty}|\dfrac{a_{n+1}}{a_n}|=L<1$ then the series is absolutely convergent\\
+\indent $\displaystyle \lim_{n\to\infty}|\dfrac{a_{n+1}}{a_n}|=L>1$ the the series is not absolutely convergent\\
+\indent $\displaystyle \lim_{n\to\infty}|\dfrac{a_{n+1}}{a_n}|=1$ then the test is inconclusive\\
+\subsection*{Root Test}
+$\displaystyle \lim_{n\to\infty}\sqrt[n]{|a_n|}=\lim_{n\to\infty}(|a_n|)^{\dfrac{1}{n}}=L$\\
+If:\\
+\indent $L<1$ then the series is absolutely convergent
+\indent $L>1$ then the series is not absolutely convergent
+\indent $L=1$ then the test is inconclusive
+\section{Power Series}
+$\displaystyle \sum^\infty_{n=1}\dfrac{1}{n^p}$ is convergent if $p>1$ and divergent if $p\le 1$
+\subsection*{Representing Functions as Power Series}
+$\displaystyle f(x)=\dfrac{1}{1-x}=\sum^\infty_{n=0}x^n$ where $|x|<1$ (geometric series $a=1$, ratio of$x$)\\
+This is a power series centered at 0 with a radius of convergence of $R=1$\\
+If a power series $\displaystyle \sum^\infty_{n=0}c_n(x-a)^n$ has a radius of convergence $R>0$ then the interval of convergence $\left| x-a \right|<R$\\
+The function $f(x)=\displaystyle \sum^\infty_{n=0}c_n(x-a)^n$ is differentiable inside the interval of convergence.\\
+$f'(x)=\displaystyle \sum^\infty_{n=0}c_n \cdot n \cdot (x-a)^{n-1}$ and $\int f(x)\cdot dx = \displaystyle \sum^\infty_{n=0}c_n\frac{(x-a)^{n+1}}{n+1}+C$
+\subsection*{Examples}
+\begin{equation}
+\begin{aligned}
+f(x)=\dfrac{1}{1-x^2}\\
+\dfrac{1}{1-(-x^2)}\\
+u=(-x^2)\\
+\dfrac{1}{1-u}\\
+\displaystyle \sum^\infty_{n=0}u^n\\
+\displaystyle \sum^\infty_{n=0}(-x^2)^n\\
+\displaystyle \sum^\infty_{n=0}(-1)^n \cdot x^{2n}\\
+\end{aligned}
+\end{equation}
+\hrule
+\begin{equation}
+\begin{aligned}
+f(x)=\dfrac{1}{3+x}\\
+\dfrac{1}{3\cdot (1+\frac{x}{3})}\\
+\dfrac{1}{3} \cdot \dfrac{1}{1+\frac{x}{3}}\\
+u=\dfrac{-x}{3}\\
+\displaystyle \frac{1}{3}\sum^\infty_{n=0}\left(\frac{-x}{3}\right)^n\\
+\displaystyle \frac{1}{3}\sum^\infty_{n=0}\left(\frac{-1}{3}\right)^n \cdot x^n\\
+\displaystyle\sum^\infty_{n=0} \frac{1}{3} \cdot \frac{(-1)^n}{3^n} \cdot x^n\\
+\displaystyle \sum^\infty_{n=0}\frac{(-1)^n}{3^{n+1}} \cdot x^n\\
+\end{aligned}
+\end{equation}
+\begin{center}
+Interval of convergence = $|x|<3$
+\end{center}
+\hrule
+\begin{equation}
+\begin{aligned}
+f(x)=\frac{1}{(1-x)^2}\frac{1}{\rightarrow 1-2x-x^2}\\
+\frac{d}{dx}\frac{1}{1-x}\\
+\frac{d}{dx}\displaystyle\sum^\infty_{n=0}x^n,|x|<1\\
+\sum^\infty_{n=0}n \cdot x^{n-1}
+\end{aligned}
+\end{equation}
+\section{Taylor and MacLaurin Series}
+(Taylor series have arbitrary centers while MacLaurin are centered at 0)\\
+Question: How do we know if a function has a power series representation? And for what values of x is it meaningful?\\
+\hrule
+Assume: $\displaystyle \sum^\infty_{n=0}c_n(x-a)^n$ for $|x-a|<R$\\
+In other words: $f(x)=c_0+c_1 \cdot (x-a) + c_2 \cdot (x-a)^2$\\
+Evaluate $c_n$ at $x=a$. $c_n=\frac{f^{(n)}(a)}{n!}$ while $f^{(n)}(x)$ is the $n^{th}$ derivative of $f(x)$\\
+Theorem: If a function has a power series representation (or power series expansion) centered at $a$, i.e. $\displaystyle \sum^\infty_{n=0}c_n(x-a)^n, |x-a|<R$, then the coefficients are given by $c_n=\frac{f^{(n)}(a)}{n!}$.\\
+These are all Taylor series centered at $a$. If $a=0$, then it is called a MacLaurin series.\\
+Need:\\
+\indent The function to be infinitely differentiable inside the interval $|x-a|<R$\\
+\indent Take partial sums in the power series $(T_n(x))$\\
+\indent \indent $T_n(x)=f(a)+f'(a)(x-a)+...+\frac{f^{(n)}(a)(x-a)^n}{n!}$\\
+\indent $\displaystyle \lim_{n\to\infty}T_n(x)=f(x)$\\
+Consider $f(x)-T_n(x)=R_n(x)$ where $R_n(x)$ is the remainder of order $n$ of the Taylor series.\\
+$\displaystyle f(x)=\lim_{n\to\infty}T_n(x)$ is equivalent to saying $\displaystyle \lim_{n\to\infty}R_n(x)=0$\\\\
+Theorem: If $f(x)=T_n(x)+R_n(x)$ where $T_n(x)$ is a Taylor polynomial of degree $n$ of $f(x)$ at $a$, and if $\displaystyle \lim_{n\to\infty}R_n(x)=0$ for all $|x-a|<R$, then $\displaystyle f(x)=\sum^\infty_{n=0}\frac{f^{(n)}(a)(x-a)^n}{n!}$
+\subsection*{Lagrange's Formula}
+The tricky bit is to show $\displaystyle \lim_{n\to\infty}R_n(x)=0$\\
+In this case it is useful to consider special representations of remainder functions\\
+Formula: If a function has at least $n+1$ derivatives in some interval $I$ that contains the center, then there exists a number $Z$ such that $x\le Z\le a$ and $R_n(x)=\frac{f^{(n+1)}(Z)(x-a)^{n+1}}{(n+1)!}$\\
+If:\\
+\indent $x=0$, then everything$=0$\\
+\indent $x<0$, then $x<Z<0$\\
+\indent $x>0$, then $0<Z<x$\\
+\subsection*{Application of Taylor Series}
+Given a function infinitely differentiable around $x=a$, to find its Taylor series centered at $a$:\\
+\begin{enumerate}
+\item Computer the Taylor coefficients $c_n=\frac{f^{(n)}(a)}{n!}$ and write down the corresponding Taylor series $\displaystyle \sum^\infty_{n=0}c_n(x-a)^n$
+\item Find the radius of convergence and interval of convergence $|x-a|<R$
+\item Apply Lagrange's formula for the remainder $R_n(x)=\frac{f^{(n+1)}(Z)(x-a)^{n+1}}{(n+1)!}$
+\item $f(x)=\displaystyle \sum^\infty_{n=0}\frac{f^{(n)}(a)}{n!}(x-a)^n$
+\end{enumerate}
+\subsection*{Example}
+Find the MacLaurin series of $f(x)=e^x$ and its radius of convergence.
+\begin{equation}
+\begin{aligned}
+\boxed{1}\\
+f^{(n)}(0)=e^0=1\\
+c_n=\frac{1}{n!}\\
+\displaystyle \sum^\infty_{n=0}\frac{x^n}{n!}\\\\\\
+\boxed{2}\\
+\text{Ratio Test of }\sum^\infty_{n=0}\frac{x^n}{n!}\\
+\lim_{n\to\infty}\left|\frac{x^{\cancel{n+}1} \cdot \cancel{(n!)}}{(n+1)\cancel{!} \cdot \cancel{x^n}}\right|\\
+\lim_{n\to\infty}\left|\frac{x}{n+1}\right|=0 \text{ regardless of x}\\
+\text{By the ratio test, the series is convergent for all }x\in \mathbb{R}\\
+\text{The radius of convergence is }R=\infty\\\\\\
+\boxed{3}\\
+0 < Z < x\\
+R_n(x)=\frac{e^Z \cdot x^{n+1}}{(n+1)!}\\
+\text{if }x>0\text{, then }0<Z<x\text{ and by the Squeeze Theorem, it is }0\\
+\text{if }x<0\text{, then }0<Z<x\text{ and by the Squeeze Theorem, it is }0\\
+\end{aligned}
+\end{equation}
+\end{document}
